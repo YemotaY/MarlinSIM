@@ -1,0 +1,110 @@
+{
+    "name": "Ender 3 V2",
+    "description": "Creality Ender 3 V2 with SKR Mini E3 V2 and ST7920 LCD",
+    "board": {
+        "name": "BTT SKR Mini E3 V2",
+        "mcu": "STM32F103RCT6",
+        "platformio_env": "STM32F103RC_btt_512K",
+        "marlin_board": "BOARD_BTT_SKR_MINI_E3_V2_0",
+        "ram_kb": 20,
+        "flash_kb": 256,
+        "clock_mhz": 72
+    },
+    "display": {
+        "type": "st7920",
+        "driver": "U8GLIB_ST7920_128X64",
+        "width": 128,
+        "height": 64,
+        "color_depth": 1,
+        "interface": "spi",
+        "encoder": true,
+        "encoder_steps_per_click": 4,
+        "beeper": true,
+        "marlin_defines": [
+            "CR10_STOCKDISPLAY"
+        ]
+    },
+    "kinematics": {
+        "type": "cartesian",
+        "axes": {
+            "X": {
+                "min_pos": 0.0,
+                "max_pos": 235.0,
+                "home_pos": 0.0,
+                "home_dir": -1,
+                "steps_per_mm": 80.0,
+                "max_feedrate": 500.0,
+                "max_accel": 500.0,
+                "endstop": "min"
+            },
+            "Y": {
+                "min_pos": 0.0,
+                "max_pos": 235.0,
+                "home_pos": 0.0,
+                "home_dir": -1,
+                "steps_per_mm": 80.0,
+                "max_feedrate": 500.0,
+                "max_accel": 500.0,
+                "endstop": "min"
+            },
+            "Z": {
+                "min_pos": 0.0,
+                "max_pos": 250.0,
+                "home_pos": 0.0,
+                "home_dir": -1,
+                "steps_per_mm": 400.0,
+                "max_feedrate": 5.0,
+                "max_accel": 100.0,
+                "endstop": "min"
+            }
+        }
+    },
+    "extruder": {
+        "count": 1,
+        "steps_per_mm": 93.0,
+        "max_feedrate": 25.0,
+        "max_accel": 1000.0,
+        "nozzle_diameter": 0.4,
+        "filament_diameter": 1.75,
+        "max_temp": 260,
+        "min_extrude_temp": 170
+    },
+    "heated_bed": {
+        "enabled": true,
+        "max_temp": 110
+    },
+    "thermal": {
+        "hotend": {
+            "thermistor": 1,
+            "pid_p": 21.73,
+            "pid_i": 1.54,
+            "pid_d": 76.55,
+            "heater_power_watts": 40,
+            "thermal_mass_j_per_k": 8.0,
+            "ambient_loss_w_per_k": 0.15
+        },
+        "bed": {
+            "thermistor": 1,
+            "pid_p": 54.25,
+            "pid_i": 0.89,
+            "pid_d": 823.95,
+            "heater_power_watts": 200,
+            "thermal_mass_j_per_k": 400.0,
+            "ambient_loss_w_per_k": 1.2
+        },
+        "ambient_temp": 22.0
+    },
+    "build_volume": {
+        "x": 220.0,
+        "y": 220.0,
+        "z": 250.0
+    },
+    "features": {
+        "auto_bed_leveling": false,
+        "filament_runout": false,
+        "power_loss_recovery": false,
+        "sd_card": true,
+        "usb_serial": true,
+        "marlinsim": true
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "name": "Ender 3 S1 Pro",
+    "description": "Creality Ender 3 S1 Pro with STM32F401 and SSD1306 OLED + DWIN",
+    "board": {
+        "name": "Creality STM32F401",
+        "mcu": "STM32F401RC",
+        "platformio_env": "STM32F401RC_creality",
+        "marlin_board": "BOARD_CREALITY_V24S1_301F4",
+        "ram_kb": 96,
+        "flash_kb": 256,
+        "clock_mhz": 84
+    },
+    "display": {
+        "type": "dwin",
+        "driver": "DWIN_CREALITY_LCD",
+        "width": 272,
+        "height": 480,
+        "color_depth": 16,
+        "interface": "serial",
+        "encoder": true,
+        "encoder_steps_per_click": 1,
+        "beeper": false,
+        "marlin_defines": [
+            "DWIN_CREALITY_LCD"
+        ]
+    },
+    "kinematics": {
+        "type": "cartesian",
+        "axes": {
+            "X": {
+                "min_pos": 0.0,
+                "max_pos": 235.0,
+                "home_pos": 0.0,
+                "home_dir": -1,
+                "steps_per_mm": 80.0,
+                "max_feedrate": 500.0,
+                "max_accel": 500.0,
+                "endstop": "min"
+            },
+            "Y": {
+                "min_pos": 0.0,
+                "max_pos": 235.0,
+                "home_pos": 0.0,
+                "home_dir": -1,
+                "steps_per_mm": 80.0,
+                "max_feedrate": 500.0,
+                "max_accel": 500.0,
+                "endstop": "min"
+            },
+            "Z": {
+                "min_pos": 0.0,
+                "max_pos": 250.0,
+                "home_pos": 0.0,
+                "home_dir": -1,
+                "steps_per_mm": 400.0,
+                "max_feedrate": 10.0,
+                "max_accel": 100.0,
+                "endstop": "min"
+            }
+        }
+    },
+    "extruder": {
+        "count": 1,
+        "steps_per_mm": 424.9,
+        "max_feedrate": 25.0,
+        "max_accel": 1000.0,
+        "nozzle_diameter": 0.4,
+        "filament_diameter": 1.75,
+        "max_temp": 300,
+        "min_extrude_temp": 170
+    },
+    "heated_bed": {
+        "enabled": true,
+        "max_temp": 110
+    },
+    "thermal": {
+        "hotend": {
+            "thermistor": 1,
+            "pid_p": 28.72,
+            "pid_i": 1.98,
+            "pid_d": 103.95,
+            "heater_power_watts": 50,
+            "thermal_mass_j_per_k": 8.5,
+            "ambient_loss_w_per_k": 0.18
+        },
+        "bed": {
+            "thermistor": 1,
+            "pid_p": 54.25,
+            "pid_i": 0.89,
+            "pid_d": 823.95,
+            "heater_power_watts": 250,
+            "thermal_mass_j_per_k": 450.0,
+            "ambient_loss_w_per_k": 1.3
+        },
+        "ambient_temp": 22.0
+    },
+    "build_volume": {
+        "x": 220.0,
+        "y": 220.0,
+        "z": 270.0
+    },
+    "features": {
+        "auto_bed_leveling": true,
+        "filament_runout": true,
+        "power_loss_recovery": true,
+        "sd_card": true,
+        "usb_serial": true,
+        "marlinsim": true
+    }
+}

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marlinsim-run"
+version = "0.1.0"
+description = "Full Marlin firmware simulator — run real Marlin on your PC with virtual hardware"
+readme = "README.md"
+license = {text = "GPL-3.0-or-later"}
+requires-python = ">=3.10"
+authors = [
+    {name = "MarlinSIM Contributors"}
+]
+keywords = ["3d-printing", "marlin", "simulator", "firmware", "virtual-hardware"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Topic :: Printing",
+]
+dependencies = [
+    "aiohttp>=3.9",
+    "aiohttp-cors>=0.7",
+]
+
+[project.scripts]
+marlinsim-run = "marlinsim_sim.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "pytest-cov"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["marlinsim_sim*"]

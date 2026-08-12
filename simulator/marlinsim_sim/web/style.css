@@ -1,0 +1,379 @@
+/* MarlinSIM Web UI Styles */
+
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-panel: #0f3460;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0c0;
+    --accent: #00d4ff;
+    --accent-dim: #007799;
+    --success: #00ff88;
+    --warning: #ffaa00;
+    --danger: #ff4444;
+    --border: #2a2a4a;
+    --lcd-bg: #6b7b3a;
+    --lcd-fg: #1a2a0a;
+    --lcd-scale: 4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: var(--bg-secondary);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--accent-dim);
+}
+
+header h1 {
+    font-size: 1.4rem;
+    color: var(--accent);
+}
+
+#status-bar {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.status-connected { color: var(--success); }
+.status-disconnected { color: var(--danger); }
+
+/* Main Grid */
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+    padding: 16px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Panels */
+.panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.panel h2 {
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* LCD Display */
+#display-panel {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#lcd-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#lcd-canvas {
+    border: 3px solid #333;
+    border-radius: 4px;
+    background: var(--lcd-bg);
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
+#lcd-info {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 16px;
+}
+
+/* Encoder Controls */
+#encoder-controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.enc-btn {
+    background: var(--bg-panel);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.15s;
+}
+
+.enc-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.enc-btn:active {
+    transform: scale(0.95);
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+.enc-click {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+#encoder-info {
+    text-align: center;
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+/* State Panel */
+#state-panel {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.state-group {
+    margin-bottom: 16px;
+}
+
+.state-group h3 {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+/* Thermal Display */
+.thermal-display {
+    display: flex;
+    gap: 24px;
+}
+
+.temp-gauge {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.temp-gauge label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.temp-bar-container {
+    height: 12px;
+    background: #1a1a3a;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.temp-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--warning), var(--danger));
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 6px;
+}
+
+.temp-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Consolas', 'Fira Code', monospace;
+}
+
+.temp-target, .pwm-value {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Axes Table */
+#axes-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+#axes-table th {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+#axes-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 3D Visualization */
+#viz-panel {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#viz-canvas {
+    width: 100%;
+    height: 350px;
+    background: #0a0a1a;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+
+/* Terminal */
+#terminal-panel {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#terminal-output {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px;
+    height: 250px;
+    overflow-y: auto;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+#terminal-output .cmd-sent {
+    color: var(--accent);
+}
+
+#terminal-output .cmd-recv {
+    color: var(--success);
+}
+
+#terminal-output .cmd-error {
+    color: var(--danger);
+}
+
+#terminal-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+#gcode-input {
+    flex: 1;
+    background: #0a0a1a;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+#gcode-input:focus {
+    border-color: var(--accent);
+}
+
+#btn-send {
+    background: var(--accent-dim);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+#btn-send:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+/* Quick Commands */
+#quick-commands {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.qcmd {
+    background: var(--bg-panel);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.15s;
+}
+
+.qcmd:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 12px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    #display-panel, #state-panel, #viz-panel, #terminal-panel {
+        grid-column: 1;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-dim);
+}

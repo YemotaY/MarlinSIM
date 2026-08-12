@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarlinSIM — Firmware Simulator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>🖨️ MarlinSIM</h1>
+        <div id="status-bar">
+            <span id="conn-status" class="status-disconnected">● Disconnected</span>
+            <span id="printer-name">—</span>
+            <span id="marlin-version">—</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- LCD Display Panel -->
+        <section id="display-panel" class="panel">
+            <h2>LCD Display</h2>
+            <div id="lcd-container">
+                <canvas id="lcd-canvas" width="512" height="256"></canvas>
+                <div id="lcd-info">
+                    <span id="lcd-type">—</span>
+                    <span id="lcd-resolution">—</span>
+                </div>
+            </div>
+
+            <!-- Encoder Controls -->
+            <div id="encoder-controls">
+                <button id="btn-enc-ccw" class="enc-btn" title="Rotate Counter-Clockwise">◀ CCW</button>
+                <button id="btn-enc-click" class="enc-btn enc-click" title="Encoder Click">● Click</button>
+                <button id="btn-enc-cw" class="enc-btn" title="Rotate Clockwise">CW ▶</button>
+            </div>
+            <div id="encoder-info">
+                <small>Or use: Mouse wheel = rotate, Click canvas = encoder click</small>
+            </div>
+        </section>
+
+        <!-- Printer State Panel -->
+        <section id="state-panel" class="panel">
+            <h2>Printer State</h2>
+
+            <div class="state-group">
+                <h3>🌡️ Thermal</h3>
+                <div class="thermal-display">
+                    <div class="temp-gauge" id="hotend-gauge">
+                        <label>Hotend</label>
+                        <div class="temp-bar-container">
+                            <div class="temp-bar" id="hotend-bar"></div>
+                        </div>
+                        <span class="temp-value" id="hotend-temp">22.0°C</span>
+                        <span class="temp-target" id="hotend-target">→ 0°C</span>
+                        <span class="pwm-value" id="hotend-pwm">PWM: 0</span>
+                    </div>
+                    <div class="temp-gauge" id="bed-gauge">
+                        <label>Bed</label>
+                        <div class="temp-bar-container">
+                            <div class="temp-bar" id="bed-bar"></div>
+                        </div>
+                        <span class="temp-value" id="bed-temp">22.0°C</span>
+                        <span class="temp-target" id="bed-target">→ 0°C</span>
+                        <span class="pwm-value" id="bed-pwm">PWM: 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="state-group">
+                <h3>📐 Axes</h3>
+                <table id="axes-table">
+                    <thead>
+                        <tr><th>Axis</th><th>Position</th><th>Steps</th><th>Homed</th><th>Endstop</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr id="axis-x"><td>X</td><td>0.000</td><td>0</td><td>—</td><td>—</td></tr>
+                        <tr id="axis-y"><td>Y</td><td>0.000</td><td>0</td><td>—</td><td>—</td></tr>
+                        <tr id="axis-z"><td>Z</td><td>0.000</td><td>0</td><td>—</td><td>—</td></tr>
+                        <tr id="axis-e"><td>E</td><td>0.000</td><td>0</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3D Visualization Panel -->
+        <section id="viz-panel" class="panel">
+            <h2>3D View</h2>
+            <canvas id="viz-canvas" width="400" height="400"></canvas>
+        </section>
+
+        <!-- G-code Terminal -->
+        <section id="terminal-panel" class="panel">
+            <h2>G-code Terminal</h2>
+            <div id="terminal-output"></div>
+            <div id="terminal-input-row">
+                <input type="text" id="gcode-input" placeholder="Enter G-code (e.g. G28, M105, G1 X100 F1000)" autocomplete="off">
+                <button id="btn-send">Send</button>
+            </div>
+            <div id="quick-commands">
+                <button class="qcmd" data-cmd="G28">G28 Home</button>
+                <button class="qcmd" data-cmd="M105">M105 Temp</button>
+                <button class="qcmd" data-cmd="M114">M114 Pos</button>
+                <button class="qcmd" data-cmd="M503">M503 Settings</button>
+                <button class="qcmd" data-cmd="M104 S200">Heat 200°C</button>
+                <button class="qcmd" data-cmd="M140 S60">Bed 60°C</button>
+                <button class="qcmd" data-cmd="M104 S0">Cool Down</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>MarlinSIM v0.1.0 — Open Source 3D Printer Firmware Simulator</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

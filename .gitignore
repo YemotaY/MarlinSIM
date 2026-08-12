@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# C/C++
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Test outputs
+tests/output/
+*.gcode.bak
+
+# Simulator builds
+.marlinsim/
+/dev/shm/marlinsim_shm
+
+# OS
+.DS_Store
+Thumbs.db
